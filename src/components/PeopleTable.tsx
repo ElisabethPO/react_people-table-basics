@@ -1,9 +1,10 @@
-import { PeopleTableProps } from '../../types/PeopleTableProps';
-import PersonLink from '../PersonLink';
+import { PeopleTableProps } from '../types';
+import PersonLink from './PersonLink';
 import React from 'react';
 
 export const PeopleTable: React.FC<PeopleTableProps> = ({
   people,
+  peopleMap,
   highlightedSlug,
 }) => (
   <table
@@ -24,25 +25,25 @@ export const PeopleTable: React.FC<PeopleTableProps> = ({
     <tbody>
       {people.map(person => (
         <tr
-          key={person.slug}
           data-cy="person"
+          key={person.name}
           className={
             person.slug === highlightedSlug ? 'has-background-warning' : ''
           }
         >
           <td>
-            <PersonLink personName={person.name} people={people} />
+            <PersonLink personName={person.name} peopleMap={peopleMap} />
           </td>
 
           <td>{person.sex}</td>
           <td>{person.born}</td>
           <td>{person.died}</td>
           <td>
-            <PersonLink personName={person.motherName} people={people} />
+            <PersonLink personName={person.motherName} peopleMap={peopleMap} />
           </td>
 
           <td>
-            <PersonLink personName={person.fatherName} people={people} />
+            <PersonLink personName={person.fatherName} peopleMap={peopleMap} />
           </td>
         </tr>
       ))}

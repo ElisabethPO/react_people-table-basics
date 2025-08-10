@@ -2,12 +2,12 @@ import React from 'react';
 import { PersonLinkProps } from '../types/PersonLinkProps';
 import { Link } from 'react-router-dom';
 
-const PersonLink: React.FC<PersonLinkProps> = ({ personName, people }) => {
+const PersonLink: React.FC<PersonLinkProps> = ({ personName, peopleMap }) => {
   if (!personName) {
     return <>-</>;
   }
 
-  const person = people.find(p => p.name === personName);
+  const person = peopleMap.get(personName);
 
   if (!person) {
     return <>{personName}</>;

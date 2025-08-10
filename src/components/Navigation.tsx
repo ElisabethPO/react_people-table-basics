@@ -1,10 +1,6 @@
-import React from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export const Navigation = () => {
-  const location = useLocation();
-  const path = location.pathname;
-
   return (
     <nav
       data-cy="nav"
@@ -14,19 +10,23 @@ export const Navigation = () => {
     >
       <div className="container">
         <div className="navbar-brand">
-          <Link
+          <NavLink
             to="/"
-            className={`navbar-item ${path === '/' ? 'has-background-grey-lighter' : ''}`}
+            className={({ isActive }) =>
+              `navbar-item ${isActive ? 'has-background-grey-lighter' : ''}`
+            }
           >
             Home
-          </Link>
+          </NavLink>
 
-          <Link
+          <NavLink
             to="/people"
-            className={`navbar-item ${path.startsWith('/people') ? 'has-background-grey-lighter' : ''}`}
+            className={({ isActive }) =>
+              `navbar-item ${isActive ? 'has-background-grey-lighter' : ''}`
+            }
           >
             People
-          </Link>
+          </NavLink>
         </div>
       </div>
     </nav>
