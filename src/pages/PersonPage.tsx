@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { Person } from '../types/Person';
 import { Loader } from '../components/Loader';
 import { getPeople } from '../api';
@@ -39,14 +39,18 @@ export const PersonPage: React.FC = () => {
     );
   }
 
+  // if (error) {
+  //   return (
+  //     <main className="section">
+  //       <div className="container">
+  //         <p className="has-text-danger">{error}</p>
+  //       </div>
+  //     </main>
+  //   );
+  // }
+
   if (error) {
-    return (
-      <main className="section">
-        <div className="container">
-          <p className="has-text-danger">{error}</p>
-        </div>
-      </main>
-    );
+    return <Navigate to="/people" replace />;
   }
 
   return (
