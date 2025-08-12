@@ -1,11 +1,12 @@
 import React from 'react';
 import { PersonLinkProps } from '../types/PersonLinkProps';
+import { Link } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
 
 const PersonLink: React.FC<PersonLinkProps> = ({
   personName,
   peopleMap,
-  onClick,
+  // onClick,
   // sex,
 }) => {
   // if (!personName) {
@@ -22,30 +23,30 @@ const PersonLink: React.FC<PersonLinkProps> = ({
     return <>{personName || 'Unknown'}</>;
   }
 
-  const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault();
+  // const handleClick = (e: React.MouseEvent) => {
+  //   e.preventDefault();
 
-    const base = window.location.href.split('#')[0];
-    const newUrl = `${base}#/people/${person.slug}`;
+  //   const base = window.location.href.split('#')[0];
+  //   const newUrl = `${base}#/people/${person.slug}`;
 
-    window.history.pushState(null, '', newUrl);
+  //   window.history.pushState(null, '', newUrl);
 
-    if (onClick) {
-      onClick(person.slug);
-    }
-  };
+  //   if (onClick) {
+  //     onClick(person.slug);
+  //   }
+  // };
 
   // const className = person.sex === 'f' ? 'has-text-danger' : '';
 
   return (
-    <a
-      href={`#/people/${person.slug}`}
-      onClick={handleClick}
+    <Link
+      to={`/people/${person.slug}`}
+      // onClick={handleClick}
       className={person.sex === 'f' ? 'has-text-danger' : ''}
       data-cy="personLink"
     >
       {personName}
-    </a>
+    </Link>
   );
 };
 
